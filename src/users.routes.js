@@ -1,6 +1,6 @@
 const express = require("express");
 
-const teste = []
+
 const usersRoutes = express.Router();
 const { PrismaClient } = require("@prisma/client");
 
@@ -24,12 +24,16 @@ usersRoutes.post("/users", async(request, response) => {
 });
 
 //Login (Read)
-usersRoutes.get("/users", async (request, response) => {
-    const users = await prisma.Users.findMany()
+usersRoutes.get("/users/:name/:password", async (request, response) => {
+    const {name, password} = request.params;
 
-    return response.status(200).json(users)
+    const userExist = await prisma.Users.findFirst({where: { name, password}});
+
+    if(!userExist) {
+        return response.status(404).json("User not exist");
+    };
+
+    return response.status(200).json("User Exist");
 })
-
-
 
 module.exports = usersRoutes;

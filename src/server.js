@@ -1,9 +1,11 @@
 const express = require("express");
 const usersRoutes = require("./users.routes");
+const commentsRoutes = require("./comments.routes");
 const app = express();
 
 app.use(express.json());
 app.use(usersRoutes);
+app.use(commentsRoutes);
 
 app.get("/health", (req, res) => {
     return res.json("up");
