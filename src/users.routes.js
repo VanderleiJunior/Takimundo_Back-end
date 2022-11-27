@@ -1,5 +1,6 @@
 const express = require("express");
 
+const teste = []
 const usersRoutes = express.Router();
 const { PrismaClient } = require("@prisma/client");
 
