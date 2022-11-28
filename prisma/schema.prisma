@@ -24,3 +24,8 @@ model Comentario{
   userName String
   idTema Int
 }
+
+model Tema{
+  id Int @id @default(autoincrement())
+  name String
+}
