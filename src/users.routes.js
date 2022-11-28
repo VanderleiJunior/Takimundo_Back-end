@@ -9,18 +9,21 @@ const prisma = new PrismaClient();
 
 //Cadastro de usuarios (Create)
 usersRoutes.post("/users", async(request, response) => {
-    const {name, email, password, dtNasc} = request.body;
+    const {name, email, password} = request.body;
 
-    const user = await prisma.Users.create({
-        data: {
-            name,
-            email,
-            password,
-            dtNasc
-        }
-    });
+    try{
+        const user = await prisma.Users.create({
+            data: {
+                name,
+                email,
+                password
+            }
+        })
 
-    return response.status(201).json(user)
+        return response.status(201).json(user)
+    } catch (e) {
+        console.log(e)
+    }
 });
 
 //Login (Read)

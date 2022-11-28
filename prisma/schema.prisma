@@ -15,7 +15,6 @@ model Users{
   name String @unique
   email String @unique
   password String
-  dtNasc String
 }
 
 model Comentario{
